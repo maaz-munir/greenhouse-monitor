@@ -169,5 +169,9 @@ src/
 │       └── server.ts       # Server client
 └── simulator.js            # Test data generator provided in the test file
 ```
+---
+## Some things to improve/fix
+- Text colour in Stats Section in Trends
+- Trends Section: The timing shown is in-server time I suppose, an oversight on my end I think. Will fix after this has been reviewed.
 
 ---
