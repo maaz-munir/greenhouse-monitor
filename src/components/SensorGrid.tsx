@@ -9,6 +9,7 @@ import SensorCard from './SensorCard';
 
 interface SensorGridProps {
   initialData: SensorData[];
+  onUpdate?: (latestTimestamp: string) => void;
 }
 
 function sortByDeviceId(data: SensorData[]): SensorData[] {
@@ -37,7 +38,7 @@ function computeStats(sensors: SensorData[]) {
   };
 }
 
-export default function SensorGrid({ initialData }: SensorGridProps) {
+export default function SensorGrid({ initialData, onUpdate }: SensorGridProps) {
   const [sensors, setSensors] = useState<SensorData[]>(sortByDeviceId(initialData));
   const stats = useMemo(() => computeStats(sensors), [sensors]);
 
@@ -51,6 +52,9 @@ export default function SensorGrid({ initialData }: SensorGridProps) {
 
       if (!error && data) {
         setSensors(sortByDeviceId(data));
+        if (data[0]?.recorded_at && onUpdate) {
+          onUpdate(data[0].recorded_at);
+        }
       }
     };
 
