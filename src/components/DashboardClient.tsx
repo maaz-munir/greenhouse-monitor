@@ -11,12 +11,19 @@ interface DashboardClientProps {
 
 type Tab = 'dashboard' | 'trends';
 
+function getInitialTimestamp(data: SensorData[]): string {
+  return data?.[0]?.recorded_at 
+    ? new Date(data[0].recorded_at).toLocaleString() 
+    : 'No data';
+}
+
 export default function DashboardClient({ initialData }: DashboardClientProps) {
   const [activeTab, setActiveTab] = useState<Tab>('dashboard');
+  const [lastUpdated, setLastUpdated] = useState(() => getInitialTimestamp(initialData));
 
-  const lastUpdated = initialData?.[0]?.recorded_at 
-    ? new Date(initialData[0].recorded_at).toLocaleString() 
-    : 'No data';
+  const handleUpdate = (latestTimestamp: string) => {
+    setLastUpdated(new Date(latestTimestamp).toLocaleString());
+  };
 
   return (
     <main className="min-h-screen bg-green-50">
@@ -59,7 +66,7 @@ export default function DashboardClient({ initialData }: DashboardClientProps) {
                 Last updated: {lastUpdated}
               </span>
             </div>
-            <SensorGrid initialData={initialData} />
+            <SensorGrid initialData={initialData} onUpdate={handleUpdate} />
           </>
         )}
 
