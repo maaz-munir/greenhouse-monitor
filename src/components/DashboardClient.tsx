@@ -1,17 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import type { SensorData } from '@/lib/sensors/types';
 import SensorGrid from '@/components/SensorGrid';
 import TrendsView from '@/components/TrendsView';
-
-interface SensorData {
-  id: number;
-  device_id: string;
-  location: string;
-  temperature: number;
-  humidity: number;
-  recorded_at: string;
-}
 
 interface DashboardClientProps {
   initialData: SensorData[];

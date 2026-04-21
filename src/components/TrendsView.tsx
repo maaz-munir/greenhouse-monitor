@@ -1,23 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import type { TrendStats, TrendDataPoint } from '@/lib/sensors/types';
 import TrendStatsCard from './TrendStatsCard';
 import TrendChart from './TrendChart';
 
-interface TrendStats {
-  temperature: { min: number; max: number; avg: number };
-  humidity: { min: number; max: number; avg: number };
-}
-
-interface DataPoint {
-  time: string;
-  temperature: number;
-  humidity: number;
-}
-
 export default function TrendsView() {
   const [stats, setStats] = useState<Record<string, TrendStats>>({});
-  const [history, setHistory] = useState<Record<string, DataPoint[]>>({});
+  const [history, setHistory] = useState<Record<string, TrendDataPoint[]>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { TRENDS_TIME_RANGE_MS, TRENDS_MAX_DATA_POINTS } from '@/lib/config';
 
 export async function GET() {
   try {
     const supabase = await createSupabaseServerClient();
 
-    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    const oneHourAgo = new Date(Date.now() - TRENDS_TIME_RANGE_MS).toISOString();
 
     const { data, error } = await supabase
       .from('sensor_readings')
@@ -35,7 +36,7 @@ export async function GET() {
         return arr.filter((_: any, i: number) => i % step === 0);
       };
 
-      const sampled = downsample(deviceData, 50);
+      const sampled = downsample(deviceData, TRENDS_MAX_DATA_POINTS);
       
       historyByDevice[device_id] = sampled.map(row => ({
         time: new Date(row.recorded_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),

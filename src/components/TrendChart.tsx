@@ -10,15 +10,10 @@ import {
   ResponsiveContainer,
   Legend,
 } from 'recharts';
-
-interface DataPoint {
-  time: string;
-  temperature: number;
-  humidity: number;
-}
+import type { TrendDataPoint } from '@/lib/sensors/types';
 
 interface TrendChartProps {
-  data: DataPoint[];
+  data: TrendDataPoint[];
   sensorId: string;
   metric: 'temperature' | 'humidity';
 }

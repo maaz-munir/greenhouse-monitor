@@ -1,4 +1,5 @@
 import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { DASHBOARD_SENSOR_LIMIT } from '@/lib/config';
 import DashboardClient from '@/components/DashboardClient';
 
 export const dynamic = 'force-dynamic';
@@ -10,7 +11,7 @@ export default async function Home() {
     .from('sensor_readings')
     .select('*')
     .order('recorded_at', { ascending: false })
-    .limit(3);
+    .limit(DASHBOARD_SENSOR_LIMIT);
 
   return <DashboardClient initialData={sensorReadings || []} />;
 }

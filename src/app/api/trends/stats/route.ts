@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { TRENDS_TIME_RANGE_MS } from '@/lib/config';
 
 export async function GET() {
   try {
@@ -8,7 +9,7 @@ export async function GET() {
     const { data, error } = await supabase
       .from('sensor_readings')
       .select('device_id, temperature, humidity, recorded_at')
-      .gte('recorded_at', new Date(Date.now() - 60 * 60 * 1000).toISOString());
+      .gte('recorded_at', new Date(Date.now() - TRENDS_TIME_RANGE_MS).toISOString());
 
     if (error) {
       console.error('Stats query error:', error);

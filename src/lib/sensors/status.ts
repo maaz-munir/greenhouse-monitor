@@ -1,19 +1,6 @@
-export type MetricStatus = 'normal' | 'warning' | 'critical';
+import { THRESHOLDS } from '@/lib/config';
 
-const THRESHOLDS = {
-  temperature: {
-    minOk: 18,
-    maxOk: 26,
-    minWarn: 15,
-    maxWarn: 28,
-  },
-  humidity: {
-    minOk: 40,
-    maxOk: 70,
-    minWarn: 30,
-    maxWarn: 80,
-  },
-};
+export type MetricStatus = 'normal' | 'warning' | 'critical';
 
 export function getTempStatus(temp: number): MetricStatus {
   const { temperature: t } = THRESHOLDS;

@@ -3,16 +3,9 @@
 import { useState, useEffect, useMemo } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import { getTempStatus, getHumidityStatus } from '@/lib/sensors/status';
+import { POLLING_INTERVAL_MS, DASHBOARD_SENSOR_LIMIT } from '@/lib/config';
+import type { SensorData } from '@/lib/sensors/types';
 import SensorCard from './SensorCard';
-
-interface SensorData {
-  id: number;
-  device_id: string;
-  location: string;
-  temperature: number;
-  humidity: number;
-  recorded_at: string;
-}
 
 interface SensorGridProps {
   initialData: SensorData[];
@@ -54,7 +47,7 @@ export default function SensorGrid({ initialData }: SensorGridProps) {
         .from('sensor_readings')
         .select('*')
         .order('recorded_at', { ascending: false })
-        .limit(3);
+        .limit(DASHBOARD_SENSOR_LIMIT);
 
       if (!error && data) {
         setSensors(sortByDeviceId(data));
@@ -63,7 +56,7 @@ export default function SensorGrid({ initialData }: SensorGridProps) {
 
     fetchLatestReadings();
 
-    const interval = setInterval(fetchLatestReadings, 6000);
+    const interval = setInterval(fetchLatestReadings, POLLING_INTERVAL_MS);
 
     return () => clearInterval(interval);
   }, []);

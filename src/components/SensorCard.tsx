@@ -7,15 +7,7 @@ import {
   getCardBorderColor,
   getStatusText,
 } from '@/lib/sensors/status';
-
-interface SensorData {
-  id: number;
-  device_id: string;
-  location: string;
-  temperature: number;
-  humidity: number;
-  recorded_at: string;
-}
+import type { SensorData } from '@/lib/sensors/types';
 
 interface SensorCardProps {
   sensor: SensorData;

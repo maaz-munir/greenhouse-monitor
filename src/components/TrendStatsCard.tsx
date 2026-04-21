@@ -1,9 +1,6 @@
 'use client';
 
-interface TrendStats {
-  temperature: { min: number; max: number; avg: number };
-  humidity: { min: number; max: number; avg: number };
-}
+import type { TrendStats } from '@/lib/sensors/types';
 
 interface TrendStatsCardProps {
   deviceId: string;
