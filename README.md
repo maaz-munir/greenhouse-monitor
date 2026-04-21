@@ -2,6 +2,8 @@
 
 A real-time greenhouse monitoring dashboard built with Next.js 15, Supabase, and Tailwind CSS for a takehome assignment.
 
+<img width="1709" height="659" alt="image" src="https://github.com/user-attachments/assets/84c3cd90-18d1-47b9-a076-1f4187e402b9" />
+
 ## Getting Started
 
 ### Prerequisites
