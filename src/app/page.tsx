@@ -4,6 +4,11 @@ import DashboardClient from '@/components/DashboardClient';
 
 export const dynamic = 'force-dynamic';
 
+export const metadata = {
+  title: "Greenhouse Monitor",
+};
+
+
 export default async function Home() {
   const supabase = await createSupabaseServerClient();
 

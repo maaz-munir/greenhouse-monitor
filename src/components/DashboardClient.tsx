@@ -27,7 +27,7 @@ export default function DashboardClient({ initialData }: DashboardClientProps) {
             <nav className="flex gap-1">
               <button
                 onClick={() => setActiveTab('dashboard')}
-                className={`px-4 py-2 rounded-md font-medium text-sm transition-colors ${
+                className={`px-4 py-2 rounded-md font-medium text-sm transition-colors cursor-pointer ${
                   activeTab === 'dashboard'
                     ? 'bg-green-800'
                     : 'hover:bg-green-600'
@@ -37,7 +37,7 @@ export default function DashboardClient({ initialData }: DashboardClientProps) {
               </button>
               <button
                 onClick={() => setActiveTab('trends')}
-                className={`px-4 py-2 rounded-md font-medium text-sm transition-colors ${
+                className={`px-4 py-2 rounded-md font-medium text-sm transition-colors cursor-pointer ${
                   activeTab === 'trends'
                     ? 'bg-green-800'
                     : 'hover:bg-green-600'
